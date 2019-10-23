@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login do Usuário</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="text" name='log' [(ngModel)]="log" required></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" name='pws' [(ngModel)]="pws" minlength="6" required></ion-input>
+    </ion-item>
+
+    <section class="ion-padding">
+      <ion-button expand="" type="submit" [disabled]="!fc.valid" color="amarelo" slot="start">Entrar</ion-button>
+      <ion-button expand="" type="reset" [routerLink]="['/']" color="danger" slot="end">Cancelar</ion-button>
+    </section>
+
+    <ion-text lines="none" class="ion-text-center">
+      <ion-title>ou</ion-title>
+    </ion-text>
+
+    <section class="ion-padding">
+      <ion-button expand="block" fill="outline" color="" (click)="loginGoogle()">Login pelo Google</ion-button>
+      <ion-button expand="block" color="amarelo" routerLink="/tabs/addUsuario">
+        <ion-icon name="add"></ion-icon>Novo cadastro
+      </ion-button>
+    </section>
+  </form>
 </ion-content>
