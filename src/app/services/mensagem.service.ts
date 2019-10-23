@@ -30,7 +30,7 @@ export class MensagemService {
       spinner: "dots",
       //duration: 5000,
       translucent: true,
-      cssClass: "amarelo",
+      cssClass: "",
     }).then(
       res => {
         res.present()
