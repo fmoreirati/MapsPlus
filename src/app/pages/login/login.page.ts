@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import * as firebase from '@angular/fire'
 import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 import { MensagemService } from 'src/app/services/mensagem.service';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @Component({
   selector: 'app-login',
@@ -75,14 +77,14 @@ export class LoginPage implements OnInit {
         , // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
         'offline': true // Optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server    
       }).then(res => {
-        const googleCredential = firebase.auth.GoogleAuthProvider
-          .credential(res.idToken);
-        firebase.auth().signInWithCredential(googleCredential)
-          .then(response => {
-            console.log("Firebase success: " + JSON.stringify(response));
-            resolve(response)
-            this.router.navigate([""])
-          });
+        // const googleCredential = fi.GoogleAuthProvider
+        //   .credential(res.idToken);
+        // firebase.auth().signInWithCredential(googleCredential)
+        //   .then(response => {
+        //     console.log("Firebase success: " + JSON.stringify(response));
+        //     resolve(response)
+        //     this.router.navigate([""])
+        //   });
       }, err => {
         console.error("Error: ", err)
         reject(err);
