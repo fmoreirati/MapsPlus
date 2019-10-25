@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import * as firebase from '@angular/fire'
+import { AngularFireAuth } from '@angular/fire/auth';
+import { MensagemService } from 'src/app/services/mensagem.service';
 
 @Component({
   selector: 'app-login',
@@ -94,6 +97,7 @@ export class LoginPage implements OnInit {
       this.googlePlus.logout();
     }
   }
+}
 
   /*  
      async loginGooglePlus() {

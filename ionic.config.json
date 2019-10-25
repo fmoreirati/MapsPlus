@@ -1,5 +1,7 @@
 {
   "name": "MapsPlus",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
