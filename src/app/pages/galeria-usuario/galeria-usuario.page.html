@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Galeria de Fotos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="pegarFoto()"> Galeria </ion-button>
+  <ion-row>
+    <ion-col size="6" *ngFor="let p of preview">
+      <ion-card>
+        <img src="{{p.photoURL}}" alt="p">
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

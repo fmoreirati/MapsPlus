@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "578078622611",
+    "firebase_url": "https://ionicmodels-be8ec.firebaseio.com",
+    "project_id": "ionicmodels-be8ec",
+    "storage_bucket": "ionicmodels-be8ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578078622611:android:1387d5fba457a8afa9de66",
+        "android_client_info": {
+          "package_name": "edu.ionic.Models"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578078622611-gj8dmj4d7vhtr9r302ev43em2uen7lhh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8er8DkPNrty5PRo6wD1ugTpAZGRc0wgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578078622611-gj8dmj4d7vhtr9r302ev43em2uen7lhh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,7 +13,10 @@ const routes: Routes = [
   },
 
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'add-usuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' }
+  { path: 'add-usuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' },
+  { path: 'list-usuario', loadChildren: './pages/list-usuario/list-usuario.module#ListUsuarioPageModule' },
+  { path: 'perfil-usuario', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
+  { path: 'galeria-usuario', loadChildren: './pages/galeria-usuario/galeria-usuario.module#GaleriaUsuarioPageModule' }
 ];
 
 @NgModule({
@@ -22,4 +25,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
