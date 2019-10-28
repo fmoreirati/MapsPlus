@@ -11,13 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 
 //Firebase ------------------------
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,12 +25,19 @@ import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ng
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Camera,
+    PhotoLibrary,
+    GooglePlus,
+    AndroidPermissions
   ],
   bootstrap: [AppComponent]
 })
