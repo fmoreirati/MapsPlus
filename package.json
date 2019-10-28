@@ -80,7 +80,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-googleplus": {},
       "cordova-plugin-photo-library": {},
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-camera": {},
@@ -90,7 +89,7 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "28.+"
       },
       "cordova-plugin-ionic-keyboard": {}
     },
