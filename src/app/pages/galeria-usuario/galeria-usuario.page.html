@@ -5,12 +5,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="pegarFoto()"> Galeria </ion-button>
-  <ion-row>
-    <ion-col size="6" *ngFor="let p of preview">
-      <ion-card>
+  <ion-list>
+    <ion-item>
+      <ion-button (click)="pegarFoto()"> Galeria </ion-button>
+      <ion-card *ngFor="let p of preview">
         <img src="{{p.photoURL}}" alt="p">
       </ion-card>
-    </ion-col>
-  </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <div text-center>
+        <img [src]="imageSrc">
+        <ion-icon slot="icon-only" name="images" (click)="openGallery()"></ion-icon>
+        <p>Choose a Photo</p>
+      </div>
+    </ion-item>
+    
+    <ion-item>
+      <ion-button (click)="tirarFoto()"> tirar foto </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

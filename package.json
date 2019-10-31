@@ -80,7 +80,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-googleplus": {},
       "cordova-plugin-photo-library": {},
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-camera": {},
