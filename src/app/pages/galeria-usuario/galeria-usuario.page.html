@@ -1,28 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Galeria de Fotos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Galeria
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-button (click)="pegarFoto()"> Galeria </ion-button>
-      <ion-card *ngFor="let p of preview">
-        <img src="{{p.photoURL}}" alt="p">
-      </ion-card>
-    </ion-item>
 
-    <ion-item>
-      <div text-center>
-        <img [src]="imageSrc">
-        <ion-icon slot="icon-only" name="images" (click)="openGallery()"></ion-icon>
-        <p>Choose a Photo</p>
-      </div>
-    </ion-item>
-    
-    <ion-item>
-      <ion-button (click)="tirarFoto()"> tirar foto </ion-button>
-    </ion-item>
-  </ion-list>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="escolher()">
+    <ion-fab-button>
+      <ion-icon name="images"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-row>
+    <ion-col size="6" *ngFor="let p of preview">
+      <img src="{{p}}" alt="p">
+    </ion-col>
+  </ion-row>
+
 </ion-content>
