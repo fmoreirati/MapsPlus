@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ToastController } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-galeria-usuario',
@@ -13,7 +13,7 @@ export class GaleriaUsuarioPage implements OnInit {
 
   constructor(
     private camera: Camera,
-    public toastController: ToastController
+    public actionSheetController: ActionSheetController
   ) { }
 
   ngOnInit() {
@@ -48,30 +48,26 @@ export class GaleriaUsuarioPage implements OnInit {
 
   //Alertas -------------------------------------------------------
   async escolher() {
-    const toast = await this.toastController.create({
+    const actionSheet = await this.actionSheetController.create({
       //header: '',
-      //message: '',
-      position: 'bottom',
-      color: 'dark',
-      buttons: [
-        {
-          side: 'start',
-          icon: 'camera',
-          text: 'Camera',
-          handler: () => {
-            this.getPhoto("")
-          }
-        },
-        {
-          side: 'end',
-          icon: 'photos',
-          text: 'Galeria',
-          handler: () => {
-            this.getPhoto("galeria")
-          }
+      translucent: true,
+
+      buttons: [{
+        text: 'Camera',
+        role: 'destructive',
+        icon: 'camera',
+        handler: () => {
+          this.getPhoto("")
         }
-      ]
+      }, {
+        text: 'Galeria',
+        role: 'destructive',
+        icon: 'photos',
+        handler: () => {
+          this.getPhoto("galeria")
+        }
+      }]
     });
-    toast.present();
+    await actionSheet.present();
   }
 }
