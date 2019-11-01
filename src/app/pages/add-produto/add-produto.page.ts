@@ -167,6 +167,8 @@ export class AddProdutoPage implements OnInit {
           this.usuario.lat = res[0].lat;
           this.usuario.lng = res[0].lng;
         }
+
+        kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
       ) */
 
 
