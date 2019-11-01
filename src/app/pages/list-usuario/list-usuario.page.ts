@@ -19,27 +19,25 @@ export class ListUsuarioPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuarios = this.usuarioService.getAll();
+    this.atualizar()
   }
 
   editar(key) {
     this.router.navigate(['/addUsuario', key]);
   }
 
-  async doRefresh(event) {
-    console.log('Begin async operation');
-    this.usuarios = await this.usuarioService.getAll().subscribe(
-      res => {
-        event.target.complete();
-      }
-    );
-
-    // setTimeout(() => {
-    //   console.log('Async operation has ended');
-    //   event.target.complete();
-    // }, 500);
+  atualizar() {
+    this.usuarios = this.usuarioService.getAll();
   }
 
+  async doRefresh(event) {
+    console.log('Begin async operation');
+    await this.atualizar()
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 500);
+  }
 
   //Alerts ------------------------------------------
 

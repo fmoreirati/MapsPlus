@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>perfil-usuario</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Usuário :: Perfil
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list lines="none">
 
+    <ion-item class="">
+      <ion-text>
+        <h2 class="ion-text-center">{{usuario.nome}}</h2>
+      </ion-text>
+    </ion-item>
+
+    <ion-item class="foto">
+      <img src={{usuario.foto}}>
+    </ion-item>
+
+    <ion-slides pager="true" [options]="slideOpts" class="slid">
+      <ion-slide *ngFor="let foto of usuario.galeria">
+        <img src="{{foto}}">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-item>
+      <ion-text>
+        <p>E-mail: {{usuario.email}}</p>
+        <p>Telefone {{usuario.tel}}</p>
+        <p>Lat: {{usuario.lat}}</p>
+        <p>Lng: {{usuario.lng}}</p>
+        <p>Ativo: {{usuario.ativo}}</p>
+      </ion-text>
+    </ion-item>
+
+  </ion-list>
 </ion-content>

@@ -48,7 +48,7 @@ export class UsuarioService {
       .pipe(
         map(
           dados =>
-            dados.map(d => ({ key: d.payload.doc, ...d.payload.doc.data() }))
+            dados.map(d => ({ key: d.payload.doc.id, ...d.payload.doc.data() }))
         )
       );
   }

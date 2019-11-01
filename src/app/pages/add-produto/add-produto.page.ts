@@ -1,19 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/model/usuario';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { AlertController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
-  selector: 'app-add-usuario',
-  templateUrl: './add-usuario.page.html',
-  styleUrls: ['./add-usuario.page.scss'],
+  selector: 'app-add-produto',
+  templateUrl: './add-produto.page.html',
+  styleUrls: ['./add-produto.page.scss'],
 })
-
-export class AddUsuarioPage implements OnInit {
-
+export class AddProdutoPage implements OnInit {
   protected usuario: Usuario = new Usuario;
   protected id: string = null;
   protected preview: string[] = null;
@@ -189,5 +181,3 @@ export class AddUsuarioPage implements OnInit {
 
     await alert.present();
   }
-
-}
