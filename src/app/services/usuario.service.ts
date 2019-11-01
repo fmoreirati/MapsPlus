@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireAuth } from '@angular/fire/auth'
-
 import { map } from 'rxjs/operators'
 import { Usuario } from '../model/usuario';
+import { AngularFireAuth } from '@angular/fire/auth'
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsuarioService {
 
   constructor(
-    protected fire: AngularFireDatabase,
+    protected firedb: AngularFirestore,
     protected afAuth: AngularFireAuth
   ) { }
 
@@ -21,34 +21,52 @@ export class UsuarioService {
         res => {
           usuario.email = null;
           usuario.pws = null;
-          return this.fire.object("usuarios/" + res.user.uid).set(usuario);
+          return this.firedb.collection("usuarios").doc(res.user.uid).set({
+            //uid: usuario.uid,
+            nome: usuario.nome,
+            //email:usuario.email,
+            //pws:usuario.pws,
+            tel: usuario.tel,
+            ativo: usuario.ativo,
+            foto: usuario.foto,
+            galeria: usuario.galeria,
+            lat: usuario.lat,
+            lng: usuario.lng
+          }).catch(
+            ()=> this.afAuth.auth.currentUser.delete()
+          );
         },
-        erro =>{
+        erro => {
           console.log(erro);
           this.afAuth.auth.currentUser.delete();
-        } 
+        }
       )
   }
 
   getAll() {
-    return this.fire.list("usuarios").snapshotChanges()
+    return this.firedb.collection<Usuario>("usuarios").snapshotChanges()
       .pipe(
         map(
           dados =>
-            dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
+            dados.map(d => ({ key: d.payload.doc, ...d.payload.doc.data() }))
         )
       );
   }
 
   get(id) {
-    return this.fire.object<Usuario>("usuarios/" + id).valueChanges();
+    return this.firedb.collection("usuarios").doc<Usuario>(id).valueChanges();
   }
 
   remover(id) {
-    return this.fire.object("usuarios/" + id).remove();
+    return this.firedb.collection("usuarios").doc(id).delete();
   }
 
   update(usuario, id) {
-    return this.fire.object("usuarios/" + id).update(usuario)
+    return this.firedb.collection("usuarios").doc(id).update(usuario)
   }
+
+  getCurenteUser() {
+    return this.afAuth.auth.currentUser
+  }
+
 }

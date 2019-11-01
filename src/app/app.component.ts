@@ -20,13 +20,13 @@ export class AppComponent {
     },
     {
       title: 'Usuarios',
-      url: '/list-usuario',
+      url: '/listUsuario',
       icon: 'people'
     }
     ,
     {
       title: 'Fotos e Galerias',
-      url: '/galeria-usuario',
+      url: '/galeriaUsuario',
       icon: 'photos'
     }
   ];

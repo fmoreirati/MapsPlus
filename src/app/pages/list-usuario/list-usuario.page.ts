@@ -23,20 +23,25 @@ export class ListUsuarioPage implements OnInit {
   }
 
   editar(key) {
-    this.router.navigate(['/tabs/addUsuario', key]);
+    this.router.navigate(['/addUsuario', key]);
   }
 
   async doRefresh(event) {
     console.log('Begin async operation');
-    this.usuarios = await this.usuarioService.getAll();
+    this.usuarios = await this.usuarioService.getAll().subscribe(
+      res => {
+        event.target.complete();
+      }
+    );
 
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 500);
-
+    // setTimeout(() => {
+    //   console.log('Async operation has ended');
+    //   event.target.complete();
+    // }, 500);
   }
 
+
+  //Alerts ------------------------------------------
 
   async remover(key) {
     const alert = await this.alertController.create({
@@ -58,7 +63,6 @@ export class ListUsuarioPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 }

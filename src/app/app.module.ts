@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 
 //Firebase ------------------------
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
@@ -28,6 +30,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
   providers: [
@@ -37,6 +40,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     Camera,
     PhotoLibrary,
     GooglePlus,
+    Geolocation,
     AndroidPermissions
   ],
   bootstrap: [AppComponent]

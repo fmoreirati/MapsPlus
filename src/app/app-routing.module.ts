@@ -13,10 +13,10 @@ const routes: Routes = [
   },
 
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'add-usuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' },
-  { path: 'list-usuario', loadChildren: './pages/list-usuario/list-usuario.module#ListUsuarioPageModule' },
-  { path: 'perfil-usuario', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
-  { path: 'galeria-usuario', loadChildren: './pages/galeria-usuario/galeria-usuario.module#GaleriaUsuarioPageModule' }
+  { path: 'addUsuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' },
+  { path: 'listUsuario', loadChildren: './pages/list-usuario/list-usuario.module#ListUsuarioPageModule' },
+  { path: 'perfilUsuario', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
+  { path: 'galeriaUsuario', loadChildren: './pages/galeria-usuario/galeria-usuario.module#GaleriaUsuarioPageModule' }
 ];
 
 @NgModule({

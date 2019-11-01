@@ -6,7 +6,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
-
 @Component({
   selector: 'app-add-usuario',
   templateUrl: './add-usuario.page.html',
@@ -17,8 +16,15 @@ export class AddUsuarioPage implements OnInit {
 
   protected usuario: Usuario = new Usuario;
   protected id: string = null;
-  protected preview: string = null;
-  
+  protected preview: string[] = null;
+  protected perfil: number = 0;
+
+  slideOpts = {
+    initialSlide: 1,
+    slidesPerView: 6,
+    speed: 400
+  };
+
   constructor(
     protected usuarioService: UsuarioService,
     protected alertController: AlertController,
@@ -50,14 +56,15 @@ export class AddUsuarioPage implements OnInit {
     if (!this.preview) {
       this.presentAlert("Ops!", "Tire sua foto!")
     } else {
-      this.usuario.foto = this.preview;
+      this.usuario.foto = this.preview[this.perfil];
+      this.usuario.galeria = this.preview;
       if (this.id) {
         this.usuarioService.update(this.usuario, this.id).then(
           res => {
             this.presentAlert("Aviso", "Atualizado!");
             form.reset();
             this.usuario = new Usuario;
-            this.router.navigate(['/tabs/listUsuario']);
+            this.router.navigate(['/listUsuario']);
           },
           erro => {
             console.log("Erro: " + erro);
@@ -70,7 +77,7 @@ export class AddUsuarioPage implements OnInit {
             this.presentAlert("Aviso", "Cadastrado!");
             form.reset();
             this.usuario = new Usuario;
-            this.router.navigate(['/tabs/listUsuario']);
+            this.router.navigate(['/listUsuario']);
           },
           erro => {
             console.log("Erro: " + erro);
@@ -79,17 +86,6 @@ export class AddUsuarioPage implements OnInit {
         )
       }
     }
-  }
-
-  async presentAlert(titulo: string, texto: string) {
-    const alert = await this.alertController.create({
-      header: titulo,
-      //subHeader: 'Subtitle',
-      message: texto,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   localAtual() {
@@ -113,47 +109,90 @@ export class AddUsuarioPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.preview = base64Image;
+      if (!this.preview) this.preview = []
+      this.preview.push(base64Image);
     }, (err) => {
       // Handle error
     });
   }
-/* 
-  loadMap() {
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-        target: {
+
+  action(event) {
+    console.log(event);
+  }
+
+  async removerFoto(index) {
+    const alert = await this.alertController.create({
+      header: 'Apagar foto!',
+      message: 'Apagar foto do Game',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Sim',
+          handler: () => {
+            this.preview.splice(index, 1);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  /* 
+    loadMap() {
+      let mapOptions: GoogleMapOptions = {
+        camera: {
+          target: {
+            lat: this.usuario.lat,
+            lng: this.usuario.lng
+          },
+          zoom: 18,
+          tilt: 30
+        }
+      };
+  
+      this.map = GoogleMaps.create('map_canvas', mapOptions);
+  
+      let marker: Marker = this.map.addMarkerSync({
+        title: 'Ionic',
+        icon: 'blue',
+        animation: 'DROP',
+        position: {
           lat: this.usuario.lat,
           lng: this.usuario.lng
-        },
-        zoom: 18,
-        tilt: 30
-      }
-    };
+        }
+      });
+      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+        marker.showInfoWindow;
+        marker.setTitle("Titulo")
+        marker.setSnippet("Descrição")
+      });
+  
+      this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
+        res => {
+          console.log(res);
+          marker.setPosition(res[0]);
+          this.usuario.lat = res[0].lat;
+          this.usuario.lng = res[0].lng;
+        }
+      ) */
 
-    this.map = GoogleMaps.create('map_canvas', mapOptions);
 
-    let marker: Marker = this.map.addMarkerSync({
-      title: 'Ionic',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: this.usuario.lat,
-        lng: this.usuario.lng
-      }
+  // Alerts ----------------------------------------
+  async presentAlert(titulo: string, texto: string) {
+    const alert = await this.alertController.create({
+      header: titulo,
+      //subHeader: 'Subtitle',
+      message: texto,
+      buttons: ['OK']
     });
-    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-      marker.showInfoWindow;
-      marker.setTitle("Titulo")
-      marker.setSnippet("Descrição")
-    });
 
-    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
-      res => {
-        console.log(res);
-        marker.setPosition(res[0]);
-        this.usuario.lat = res[0].lat;
-        this.usuario.lng = res[0].lng;
-      }
-    ) */
-    }
+    await alert.present();
+  }
+
+}
