@@ -168,7 +168,7 @@ export class AddProdutoPage implements OnInit {
           this.usuario.lng = res[0].lng;
         }
 
-        kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+     kkkkkkkkkkkkkk
         aaaaaaaahhhhhhh
       ) */
 
