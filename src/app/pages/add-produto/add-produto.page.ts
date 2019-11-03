@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Produto } from '../../model/produto';
+import { ProdutoService } from 'src/app/services/produto.service';
+import { AlertController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-add-produto',
   templateUrl: './add-produto.page.html',
   styleUrls: ['./add-produto.page.scss'],
 })
+
+
 export class AddProdutoPage implements OnInit {
-  protected usuario: Usuario = new Usuario;
+  protected produto: Produto = new Produto;
   protected id: string = null;
   protected preview: string[] = null;
   protected perfil: number = 0;
@@ -18,7 +26,7 @@ export class AddProdutoPage implements OnInit {
   };
 
   constructor(
-    protected usuarioService: UsuarioService,
+    protected produtoService: ProdutoService,
     protected alertController: AlertController,
     protected router: Router,
     protected activedRoute: ActivatedRoute,
@@ -34,9 +42,9 @@ export class AddProdutoPage implements OnInit {
   ionViewWillEnter() {
     this.id = this.activedRoute.snapshot.paramMap.get("id");
     if (this.id) {
-      this.usuarioService.get(this.id).subscribe(
+      this.produtoService.get(this.id).subscribe(
         res => {
-          this.usuario = res
+          this.produto = res
         },
         erro => this.id = null
       )
@@ -47,14 +55,14 @@ export class AddProdutoPage implements OnInit {
     if (!this.preview) {
       this.presentAlert("Ops!", "Tire sua foto!")
     } else {
-      this.usuario.foto = this.preview[this.perfil];
-      this.usuario.galeria = this.preview;
+      this.produto.foto = this.preview[this.perfil];
+      this.produto.galeria = this.preview;
       if (this.id) {
-        this.usuarioService.update(this.usuario, this.id).then(
+        this.produtoService.update(this.produto, this.id).then(
           res => {
             this.presentAlert("Aviso", "Atualizado!");
-            this.router.navigate(['/listUsuario']);
-            this.usuario = new Usuario;
+            this.router.navigate(['/listproduto']);
+            this.produto = new Produto;
             //form.reset();
           },
           erro => {
@@ -63,11 +71,11 @@ export class AddProdutoPage implements OnInit {
           }
         )
       } else {
-        this.usuarioService.save(this.usuario).then(
+        this.produtoService.save(this.produto).then(
           res => {
             this.presentAlert("Aviso", "Cadastrado!");
-            this.router.navigate(['/listUsuario']);
-            this.usuario = new Usuario;
+            this.router.navigate(['/listproduto']);
+            this.produto = new Produto;
             //form.reset();
           },
           erro => {
@@ -81,8 +89,8 @@ export class AddProdutoPage implements OnInit {
 
   localAtual() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      this.usuario.lat = resp.coords.latitude
-      this.usuario.lng = resp.coords.longitude
+      this.produto.lat = resp.coords.latitude
+      this.produto.lng = resp.coords.longitude
       //this.loadMap()
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -135,8 +143,8 @@ export class AddProdutoPage implements OnInit {
       let mapOptions: GoogleMapOptions = {
         camera: {
           target: {
-            lat: this.usuario.lat,
-            lng: this.usuario.lng
+            lat: this.produto.lat,
+            lng: this.produto.lng
           },
           zoom: 18,
           tilt: 30
@@ -150,8 +158,8 @@ export class AddProdutoPage implements OnInit {
         icon: 'blue',
         animation: 'DROP',
         position: {
-          lat: this.usuario.lat,
-          lng: this.usuario.lng
+          lat: this.produto.lat,
+          lng: this.produto.lng
         }
       });
       marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
@@ -164,8 +172,8 @@ export class AddProdutoPage implements OnInit {
         res => {
           console.log(res);
           marker.setPosition(res[0]);
-          this.usuario.lat = res[0].lat;
-          this.usuario.lng = res[0].lng;
+          this.produto.lat = res[0].lat;
+          this.produto.lng = res[0].lng;
         }
 
      kkkkkkkkkkkkkk
@@ -184,3 +192,4 @@ export class AddProdutoPage implements OnInit {
 
     await alert.present();
   }
+}
