@@ -19,7 +19,12 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Usuarios',
+      title: 'Produtos(Realtime)',
+      url: '/listProduto',
+      icon: 'gift'
+    },
+    {
+      title: 'Usuarios(CloudFire)',
       url: '/listUsuario',
       icon: 'people'
     }

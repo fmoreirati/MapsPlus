@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Ionic Model :: Cards Produtos
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" routerLink="/addProduto">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <ion-content>
+  
+    <ion-row *ngIf="produtos ">
+      <ion-card class="" size="6" *ngFor="let produto of produtos">
+        <img src="produto.foto" alt="" />
+        <ion-card-header>
+          <ion-card-subtitle>{{produto.nome}}</ion-card-subtitle>
+          <ion-card-title>{{produto.descricao}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <strong color="danger">{{produto.valor | currency: "BRL"}}</strong>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  
+  </ion-content>

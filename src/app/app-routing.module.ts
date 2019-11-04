@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'listUsuario', loadChildren: './pages/list-usuario/list-usuario.module#ListUsuarioPageModule' },
   { path: 'galeriaUsuario', loadChildren: './pages/galeria-usuario/galeria-usuario.module#GaleriaUsuarioPageModule' },
   { path: 'addProduto', loadChildren: './pages/add-produto/add-produto.module#AddProdutoPageModule' },
-  { path: 'perfilProduto', loadChildren: './pages/perfil-produto/perfil-produto.module#PerfilProdutoPageModule' }
+  { path: 'perfilProduto', loadChildren: './pages/perfil-produto/perfil-produto.module#PerfilProdutoPageModule' },
+  { path: 'listProduto', loadChildren: './pages/list-produto/list-produto.module#ListProdutoPageModule' }
 
 ];
 
