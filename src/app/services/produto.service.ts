@@ -7,10 +7,13 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProdutoService {
-  protected firedb: AngularFireDatabase
+
+  constructor(
+    protected firedb: AngularFireDatabase
+  ) { }
 
   save(produto) {
-          return this.firedb.list("produtos").push(produto)
+    return this.firedb.list("produtos").push(produto)
   }
 
   getAll() {
@@ -24,15 +27,15 @@ export class ProdutoService {
   }
 
   get(id) {
-    return this.firedb.object<Produto>("produtos/"+id).valueChanges();
+    return this.firedb.object<Produto>("produtos/" + id).valueChanges();
   }
 
   remover(id) {
-    return this.firedb.object("produtos/"+id).remove();
+    return this.firedb.object("produtos/" + id).remove();
   }
 
   update(produto, id) {
-    return this.firedb.object("produtos/"+id).update(produto)
+    return this.firedb.object("produtos/" + id).update(produto)
   }
 
 }

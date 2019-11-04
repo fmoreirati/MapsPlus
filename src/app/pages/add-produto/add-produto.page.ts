@@ -14,6 +14,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 export class AddProdutoPage implements OnInit {
+
   protected produto: Produto = new Produto;
   protected id: string = null;
   protected preview: string[] = null;
@@ -61,7 +62,7 @@ export class AddProdutoPage implements OnInit {
         this.produtoService.update(this.produto, this.id).then(
           res => {
             this.presentAlert("Aviso", "Atualizado!");
-            this.router.navigate(['/listproduto']);
+            this.router.navigate(['/listProduto']);
             this.produto = new Produto;
             //form.reset();
           },
@@ -74,7 +75,7 @@ export class AddProdutoPage implements OnInit {
         this.produtoService.save(this.produto).then(
           res => {
             this.presentAlert("Aviso", "Cadastrado!");
-            this.router.navigate(['/listproduto']);
+            this.router.navigate(['/listProduto']);
             this.produto = new Produto;
             //form.reset();
           },
