@@ -16,8 +16,9 @@ const routes: Routes = [
   { path: 'addUsuario', loadChildren: './pages/add-usuario/add-usuario.module#AddUsuarioPageModule' },
   { path: 'perfilUsuario/:id', loadChildren: './pages/perfil-usuario/perfil-usuario.module#PerfilUsuarioPageModule' },
   { path: 'listUsuario', loadChildren: './pages/list-usuario/list-usuario.module#ListUsuarioPageModule' },
-  { path: 'galeriaUsuario', loadChildren: './pages/galeria-usuario/galeria-usuario.module#GaleriaUsuarioPageModule' },  { path: 'add-produto', loadChildren: './pages/add-produto/add-produto.module#AddProdutoPageModule' },
-  { path: 'perfil-produto', loadChildren: './pages/perfil-produto/perfil-produto.module#PerfilProdutoPageModule' }
+  { path: 'galeriaUsuario', loadChildren: './pages/galeria-usuario/galeria-usuario.module#GaleriaUsuarioPageModule' },
+  { path: 'addProduto', loadChildren: './pages/add-produto/add-produto.module#AddProdutoPageModule' },
+  { path: 'perfilProduto', loadChildren: './pages/perfil-produto/perfil-produto.module#PerfilProdutoPageModule' }
 
 ];
 
