@@ -1,9 +1,8 @@
 export class Produto {
     id: string; 
     nome: string; 
-    categoria: string; 
-    console: string; 
     descricao: string; 
+    categoria:string;
     quant: number; 
     valor: number; 
     ativo: boolean = true;

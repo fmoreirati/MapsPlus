@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 
 @Component({

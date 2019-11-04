@@ -175,9 +175,6 @@ export class AddProdutoPage implements OnInit {
           this.produto.lat = res[0].lat;
           this.produto.lng = res[0].lng;
         }
-
-     kkkkkkkkkkkkkk
-        aaaaaaaahhhhhhh
       ) */
 
 
