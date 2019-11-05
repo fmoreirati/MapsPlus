@@ -6,7 +6,6 @@ export class Usuario {
     tel:string;
     ativo:boolean = true;
     foto:string;
-    galeria:string[]=[];
     lat:number;
     lng:number;
 }

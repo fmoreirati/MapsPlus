@@ -11,7 +11,7 @@
 
 <ion-content>
   <ion-item lines="none" class="foto">
-    <img src="assets/perfil.png" (click)="tirarFoto()" *ngIf="!preview">
+    <img src="assets/box.jpg" (click)="tirarFoto()" *ngIf="!preview">
     <img [src]="preview[preview.length - 1]" alt="foto perfil" (click)="tirarFoto()" *ngIf="preview">
   </ion-item>
 
