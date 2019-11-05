@@ -16,14 +16,7 @@ export class AddUsuarioPage implements OnInit {
 
   protected usuario: Usuario = new Usuario;
   protected id: string = null;
-  protected preview: string[] = null;
-  protected perfil: number = 0;
-
-  slideOpts = {
-    initialSlide: 1,
-    slidesPerView: 6,
-    speed: 400
-  };
+  protected preview: string = null;
 
   constructor(
     protected usuarioService: UsuarioService,
@@ -55,8 +48,7 @@ export class AddUsuarioPage implements OnInit {
     if (!this.preview) {
       this.presentAlert("Ops!", "Tire sua foto!")
     } else {
-      this.usuario.foto = this.preview[this.perfil];
-      this.usuario.galeria = this.preview;
+      this.usuario.foto = this.preview;
       if (this.id) {
         this.usuarioService.update(this.usuario, this.id).then(
           res => {
@@ -108,34 +100,11 @@ export class AddUsuarioPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      if (!this.preview) this.preview = []
-      this.preview.push(base64Image);
+      
+      this.preview= base64Image;
     }, (err) => {
       // Handle error
     });
-  }
-
-  async removerFoto(index) {
-    const alert = await this.alertController.create({
-      header: 'Apagar foto!',
-      message: 'Apagar foto do Game',
-      buttons: [
-        {
-          text: 'Não',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Sim',
-          handler: () => {
-            this.preview.splice(index, 1);
-          }
-        }
-      ]
-    });
-    await alert.present();
   }
 
   /* 

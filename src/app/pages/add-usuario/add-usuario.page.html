@@ -12,14 +12,8 @@
 <ion-content>
   <ion-item lines="none" class="foto">
     <img src="assets/perfil.png" (click)="tirarFoto()" *ngIf="!preview">
-    <img [src]="preview[preview.length - 1]" alt="foto perfil" (click)="tirarFoto()" *ngIf="preview">
+    <img [src]="preview" alt="foto perfil" (click)="tirarFoto()" *ngIf="preview">
   </ion-item>
-
-  <ion-slides pager="true" [options]="slideOpts" *ngIf="preview" class="slid">
-    <ion-slide *ngFor="let foto of preview; let i = index" (click)="removerFoto(i)">
-      <img src="{{foto}}">
-    </ion-slide>
-  </ion-slides>
 
   <form #fc="ngForm" (ngSubmit)="onsubmit(fc)">
     <ion-item>
