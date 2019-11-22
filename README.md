@@ -1,3 +1,2 @@
-# MapsPlus
-
-Exemplo do uso de Maps e Login do Google e FireBase
+# Ionic Model
+Exemplo do uso com farias ferramentas do Ionic
